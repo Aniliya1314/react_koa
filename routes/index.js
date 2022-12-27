@@ -1,5 +1,6 @@
 const router = require("koa-router")();
 const uploadFile = require("../utils/upload");
+const { getChatList } = require("../controller/chat");
 const path = require("path");
 
 function handleRes(ctx, next, res) {
@@ -26,6 +27,12 @@ router.post("/upload", async (ctx, next) => {
     path: serverFilePath,
     isImg: !!isImg,
   });
+  handleRes(ctx, next, res);
+});
+
+//获取聊天列表
+router.get("/api/chat/list", async function (ctx, next) {
+  const res = await getChatList();
   handleRes(ctx, next, res);
 });
 

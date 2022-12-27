@@ -269,6 +269,17 @@ const deleteUser = async function (param) {
   });
 };
 
+/**
+ * 获取所有用户
+ */
+const getAllUsers = async function () {
+  const sql = `select id,username,avatar,isAdmin from users order by registrationTime desc`;
+  const res = await exec(sql);
+  return new SuccessModel({
+    data: res,
+  });
+};
+
 module.exports = {
   checkName,
   register,
@@ -277,4 +288,5 @@ module.exports = {
   updateUser,
   getUsers,
   deleteUser,
+  getAllUsers,
 };

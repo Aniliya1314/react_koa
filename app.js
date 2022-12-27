@@ -10,11 +10,13 @@ const cors = require("koa2-cors");
 const jwt = require("koa-jwt");
 const historyApiFallback = require("koa-history-api-fallback");
 const { TOKEN_SECRETKEY } = require("./config/secret");
+const chat = require("./chat");
 
 const index = require("./routes/index");
 const users = require("./routes/users");
 const works = require("./routes/works");
 const message = require("./routes/message");
+const score = require("./routes/score");
 
 const errorHandle = require("./middlewares/errorHandle");
 
@@ -69,6 +71,7 @@ app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
 app.use(works.routes(), works.allowedMethods());
 app.use(message.routes(), message.allowedMethods());
+app.use(score.routes(), score.allowedMethods());
 
 app.use(historyApiFallback());
 app.use(koaStatic(__dirname, { maxAge: 604800000 }));

@@ -7,6 +7,7 @@ const {
   updateUser,
   getUsers,
   deleteUser,
+  getAllUsers,
 } = require("../controller/user");
 
 router.prefix("/api/users");
@@ -45,6 +46,11 @@ router.get("/getUser", async function (ctx, next) {
 
 router.get("/getUsers", async function (ctx, next) {
   const res = await getUsers(ctx.query);
+  handleRes(ctx, next, res);
+});
+
+router.get("/getAllUsers", async function (ctx, next) {
+  const res = await getAllUsers();
   handleRes(ctx, next, res);
 });
 
